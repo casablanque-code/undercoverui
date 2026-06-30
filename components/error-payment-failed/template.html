@@ -1,0 +1,68 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+.wrap{text-align:center;max-width:220px}
+.icon-wrap{width:52px;height:52px;background:#fee2e2;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;color:#ef4444}
+h1{font-size:16px;font-weight:600;margin-bottom:6px}
+p{font-size:11px;color:#6b7280;margin-bottom:12px;line-height:1.5}
+ul{list-style:none;text-align:left;font-size:11px;color:#6b7280;margin-bottom:16px;display:flex;flex-direction:column;gap:3px}
+ul li::before{content:'· ';color:#d1d5db}
+.btns{display:flex;flex-direction:column;gap:6px}
+.btns button,.btns a{padding:8px;border-radius:6px;font-size:11px;cursor:pointer;text-align:center;text-decoration:none;transition:opacity .15s}
+#b-r{background:#f3f4f6;border:1px solid #d1d5db;color:#374151}
+#b-t{background:#4f46e5;border:none;color:#fff}
+.btns button:hover,.btns a:hover{opacity:.8}
+</style></head><body>
+<div class="wrap" role="alert">
+  <div class="icon-wrap"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+  <h1>Оплата не прошла</h1>
+  <p>Транзакция отклонена. Возможные причины:</p>
+  <ul>
+    <li>Недостаточно средств</li>
+    <li>Карта заблокирована</li>
+    <li>Неверные данные карты</li>
+    <li>Лимит исчерпан</li>
+  </ul>
+  <div class="btns">
+    <a id="b-r" href="#">В корзину</a>
+    <button id="b-t" onclick="location.reload()">Попробовать снова</button>
+  </div>
+</div>
+</body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- Payment Failed State -->
+<div role="alert"
+     style="text-align:center;padding:40px 24px;font-family:system-ui,sans-serif">
+  <div style="width:56px;height:56px;background:#fee2e2;border-radius:50%;
+              display:flex;align-items:center;justify-content:center;
+              margin:0 auto 16px;color:#ef4444" aria-hidden="true">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </div>
+  <h2 style="margin:0 0 8px;font-size:20px">Оплата не прошла</h2>
+  <p style="color:#6b7280;margin:0 0 8px;font-size:14px;line-height:1.5">Транзакция отклонена. Возможные причины:</p>
+  <ul style="text-align:left;display:inline-block;font-size:14px;color:#6b7280;margin:0 0 24px;line-height:1.8;list-style:disc;padding-left:20px">
+    <li>Недостаточно средств на карте</li>
+    <li>Карта заблокирована для онлайн-платежей</li>
+    <li>Неверные данные карты</li>
+    <li>Лимит по карте исчерпан</li>
+  </ul>
+  <div style="display:flex;gap:8px;justify-content:center">
+    <a href="/cart" style="background:#f3f4f6;border:1px solid #d1d5db;color:#374151;
+                           padding:10px 20px;border-radius:6px;font-size:14px;text-decoration:none">
+      В корзину
+    </a>
+    <button onclick="retryPayment()"
+            style="background:#4f46e5;border:none;color:#fff;
+                   padding:10px 20px;border-radius:6px;font-size:14px;cursor:pointer">
+      Попробовать снова
+    </button>
+  </div>
+</div>
+<script>
+function retryPayment() { window.location.reload(); }
+</script>
+[/CODE]

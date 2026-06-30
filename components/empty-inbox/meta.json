@@ -1,0 +1,15 @@
+{
+  "id": "empty-inbox",
+  "title": "Empty Inbox",
+  "category": "empty",
+  "description": "Пустые входящие. Позитивный тон.",
+  "tags": [],
+  "compliance": [
+    "Позитивный tone-of-voice"
+  ],
+  "regulatory_refs": [],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 880,
+  "hearts": 77
+}

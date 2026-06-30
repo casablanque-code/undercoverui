@@ -1,0 +1,13 @@
+{
+  "id": "empty-notifications",
+  "title": "No Notifications",
+  "category": "empty",
+  "description": "Пустая лента уведомлений с позитивным сообщением.",
+  "tags": [],
+  "compliance": [],
+  "regulatory_refs": [],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 790,
+  "hearts": 66
+}

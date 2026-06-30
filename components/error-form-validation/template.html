@@ -1,0 +1,98 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh;display:flex;align-items:center;justify-content:center}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:20px;width:240px}
+h3{font-size:13px;font-weight:600;margin-bottom:14px}
+.field{margin-bottom:10px}
+label{display:block;font-size:11px;color:#374151;margin-bottom:3px}
+input{width:100%;border:1px solid #d1d5db;border-radius:5px;padding:7px 10px;font-size:12px;outline:none;font-family:inherit;transition:border-color .15s}
+input.err{border-color:#ef4444;background:#fff8f8}
+input:focus{border-color:#8B7CF6}
+.errmsg{font-size:10px;color:#ef4444;margin-top:3px;display:none}
+.errmsg.show{display:block}
+button{width:100%;background:#4f46e5;border:none;color:#fff;padding:9px;border-radius:6px;font-size:12px;cursor:pointer;transition:opacity .15s;margin-top:4px}
+button:hover{opacity:.85}
+#ok{display:none;text-align:center;padding:20px;color:#22c55e;font-weight:600;font-size:13px}
+</style></head><body>
+<div class="card">
+  <div id="fw">
+    <h3>Вход</h3>
+    <div class="field">
+      <label>Email</label>
+      <input id="em" type="email" placeholder="user@example.com" oninput="clear('em','ee')">
+      <div class="errmsg" id="ee">Введите корректный email</div>
+    </div>
+    <div class="field">
+      <label>Пароль</label>
+      <input id="pw" type="password" placeholder="Минимум 8 символов" oninput="clear('pw','pe')">
+      <div class="errmsg" id="pe">Минимум 8 символов</div>
+    </div>
+    <button onclick="validate()">Войти</button>
+  </div>
+  <div id="ok">✓ Успешный вход</div>
+</div>
+<script>
+function clear(fid,eid){document.getElementById(fid).classList.remove('err');document.getElementById(eid).classList.remove('show');}
+function validate(){
+  var em=document.getElementById('em').value,pw=document.getElementById('pw').value,ok=true;
+  if(!em||!/^[^s@]+@[^s@]+.[^s@]+$/.test(em)){document.getElementById('em').classList.add('err');document.getElementById('ee').classList.add('show');ok=false;}
+  if(pw.length<8){document.getElementById('pw').classList.add('err');document.getElementById('pe').classList.add('show');ok=false;}
+  if(ok){document.getElementById('fw').style.display='none';document.getElementById('ok').style.display='block';}
+}
+</script></body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- Form Validation with Accessible Error Messages — WCAG 2.1 SC 3.3.1 -->
+<form id="validated-form" onsubmit="validateForm(event)" novalidate>
+  <div style="margin-bottom:16px">
+    <label for="email-field" style="display:block;font-size:14px;margin-bottom:4px">
+      Email <span aria-hidden="true" style="color:#ef4444">*</span>
+    </label>
+    <input type="email" id="email-field" name="email" autocomplete="email"
+           aria-required="true" aria-describedby="email-error"
+           style="width:100%;border:1px solid #d1d5db;border-radius:6px;
+                  padding:9px 12px;font-size:14px;outline:none">
+    <span id="email-error" role="alert" aria-live="polite"
+          style="display:none;font-size:12px;color:#ef4444;margin-top:4px"></span>
+  </div>
+  <div style="margin-bottom:16px">
+    <label for="pass-field" style="display:block;font-size:14px;margin-bottom:4px">
+      Пароль <span aria-hidden="true" style="color:#ef4444">*</span>
+    </label>
+    <input type="password" id="pass-field" name="password"
+           aria-required="true" aria-describedby="pass-error"
+           style="width:100%;border:1px solid #d1d5db;border-radius:6px;
+                  padding:9px 12px;font-size:14px;outline:none">
+    <span id="pass-error" role="alert" aria-live="polite"
+          style="display:none;font-size:12px;color:#ef4444;margin-top:4px"></span>
+  </div>
+  <button type="submit"
+          style="width:100%;background:#4f46e5;border:none;color:#fff;
+                 padding:10px;border-radius:6px;font-size:14px;cursor:pointer">
+    Войти
+  </button>
+</form>
+<script>
+function setError(fieldId, errorId, message) {
+  const field = document.getElementById(fieldId);
+  const error = document.getElementById(errorId);
+  field.style.borderColor = message ? '#ef4444' : '#d1d5db';
+  field.setAttribute('aria-invalid', message ? 'true' : 'false');
+  error.textContent = message;
+  error.style.display = message ? 'block' : 'none';
+  return !message;
+}
+function validateForm(e) {
+  e.preventDefault();
+  const email = document.getElementById('email-field').value;
+  const pass  = document.getElementById('pass-field').value;
+  const emailOk = setError('email-field','email-error',
+    !email ? 'Email обязателен' :
+    !/^[^s@]+@[^s@]+.[^s@]+$/.test(email) ? 'Введите корректный email' : '');
+  const passOk = setError('pass-field','pass-error',
+    !pass ? 'Пароль обязателен' : pass.length < 8 ? 'Минимум 8 символов' : '');
+  if (emailOk && passOk) { /* отправить форму */ }
+}
+</script>
+[/CODE]

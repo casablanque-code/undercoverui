@@ -1,0 +1,76 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh;display:flex;flex-direction:column}
+main{flex:1;display:flex;align-items:center;justify-content:center;font-size:12px;color:#9ca3af}
+footer{background:#fff;border-top:1px solid #e5e7eb;padding:10px 16px;text-align:center}
+a{color:#4f46e5;font-size:11px;text-decoration:underline;cursor:pointer}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);align-items:center;justify-content:center}
+#overlay.open{display:flex}
+#modal{background:#fff;border-radius:10px;padding:20px;max-width:280px;width:90%}
+h2{font-size:14px;margin-bottom:8px}p{font-size:11px;color:#6b7280;margin-bottom:14px;line-height:1.5}
+.btns{display:flex;gap:6px}
+.btns button{flex:1;padding:7px;border-radius:5px;font-size:11px;cursor:pointer;transition:opacity .15s}
+#b-c{background:#f3f4f6;border:1px solid #d1d5db;color:#374151}
+#b-o{background:#dc2626;border:none;color:#fff}
+.btns button:hover{opacity:.8}
+#ok{display:none;padding:10px;text-align:center;font-size:12px;color:#22c55e;font-weight:600}
+</style></head><body>
+<main>Контент страницы</main>
+<footer>
+  <a onclick="document.getElementById('overlay').classList.add('open')">Не продавать мои персональные данные</a>
+</footer>
+<div id="overlay">
+  <div id="modal">
+    <h2>Не продавать мои данные</h2>
+    <p>Согласно CCPA вы вправе запретить передачу ваших персональных данных третьим лицам в рекламных целях.</p>
+    <div id="btns-wrap" class="btns">
+      <button id="b-c" onclick="document.getElementById('overlay').classList.remove('open')">Отмена</button>
+      <button id="b-o" onclick="submit()">Запретить</button>
+    </div>
+    <div id="ok">✓ Запрос принят</div>
+  </div>
+</div>
+<script>
+function submit(){
+  document.getElementById('btns-wrap').style.display='none';
+  document.getElementById('ok').style.display='block';
+  setTimeout(function(){document.getElementById('overlay').classList.remove('open');document.getElementById('btns-wrap').style.display='flex';document.getElementById('ok').style.display='none';},1800);
+}
+</script></body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- CCPA Do Not Sell My Personal Information -->
+<a href="#" onclick="openDNSModal(); return false;"
+   style="color:#4f46e5;font-size:13px;text-decoration:underline">
+  Не продавать мои персональные данные
+</a>
+<div id="dns-modal" hidden role="dialog" aria-modal="true"
+     aria-label="Do Not Sell My Personal Information"
+     style="position:fixed;inset:0;background:rgba(0,0,0,0.5);
+            display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px">
+  <div style="background:#fff;border-radius:10px;padding:24px;max-width:460px;width:100%">
+    <h2 style="margin:0 0 12px;font-size:18px">Не продавать мои данные</h2>
+    <p style="font-size:14px;color:#374151;margin:0 0 20px;line-height:1.5">
+      Согласно CCPA вы вправе запретить продажу своих персональных данных третьим лицам.
+    </p>
+    <div style="display:flex;gap:8px">
+      <button onclick="closeDNSModal()"
+              style="flex:1;background:#f3f4f6;border:1px solid #d1d5db;
+                     padding:9px;border-radius:6px;font-size:14px;cursor:pointer">Отмена</button>
+      <button onclick="submitDNS()"
+              style="flex:1;background:#dc2626;border:none;color:#fff;
+                     padding:9px;border-radius:6px;font-size:14px;cursor:pointer">Запретить продажу</button>
+    </div>
+  </div>
+</div>
+<script>
+function openDNSModal() { document.getElementById('dns-modal').hidden = false; }
+function closeDNSModal() { document.getElementById('dns-modal').hidden = true; }
+function submitDNS() {
+  localStorage.setItem('ccpa_dns', JSON.stringify({ optOut: true, timestamp: Date.now() }));
+  closeDNSModal();
+  // fetch('/api/privacy/opt-out', { method: 'POST' });
+}
+</script>
+[/CODE]

@@ -1,0 +1,22 @@
+{
+  "id": "consent-revocation-footer",
+  "title": "Consent Revocation Footer",
+  "category": "legal",
+  "description": "Постоянная плашка «Настройки Cookie» в футере для отзыва согласия.",
+  "tags": [
+    "GDPR",
+    "CCPA"
+  ],
+  "compliance": [
+    "GDPR Art. 7(3) — право отозвать согласие",
+    "Доступна в любой момент"
+  ],
+  "regulatory_refs": [
+    "GDPR Art. 7(3)",
+    "CNIL 2022 — persistent opt-out access"
+  ],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 310,
+  "hearts": 38
+}

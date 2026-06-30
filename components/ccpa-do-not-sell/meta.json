@@ -1,0 +1,22 @@
+{
+  "id": "ccpa-do-not-sell",
+  "title": "CCPA «Do Not Sell»",
+  "category": "legal",
+  "description": "Обязательная ссылка и модал для калифорнийских пользователей.",
+  "tags": [
+    "CCPA"
+  ],
+  "compliance": [
+    "CCPA §1798.120 — right to opt-out",
+    "CPRA 2023 обновления",
+    "WAI-ARIA dialog"
+  ],
+  "regulatory_refs": [
+    "CCPA §1798.120",
+    "CPRA §1798.135 — Do Not Sell or Share"
+  ],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 290,
+  "hearts": 27
+}

@@ -1,0 +1,24 @@
+{
+  "name": "undercoverui",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "validate": "node scripts/validate-components.mjs",
+    "test:a11y": "playwright test tests/a11y.spec.js",
+    "test:click-parity": "playwright test tests/click-parity.spec.js",
+    "test": "npm run validate && npm run test:a11y && npm run test:click-parity"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.61.1",
+    "glob": "^13.0.6",
+    "vite": "^8.1.0"
+  },
+  "dependencies": {
+    "marked": "^18.0.5"
+  }
+}

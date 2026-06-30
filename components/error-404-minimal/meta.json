@@ -1,0 +1,18 @@
+{
+  "id": "error-404-minimal",
+  "title": "404 — Minimal",
+  "category": "error",
+  "description": "Лаконичная страница ошибки. Цифра, текст, кнопка.",
+  "tags": [
+    "A11Y"
+  ],
+  "compliance": [
+    "Семантичный <main>",
+    "Keyboard navigation"
+  ],
+  "regulatory_refs": [],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 842,
+  "hearts": 41
+}

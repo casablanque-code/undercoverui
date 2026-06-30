@@ -1,0 +1,88 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh;display:flex;align-items:flex-end}
+#banner{width:100%;background:#fff;border-top:2px solid #e5e7eb;padding:14px 18px}
+p{font-size:12px;color:#374151;margin-bottom:10px;line-height:1.5}a{color:#4f46e5}
+.btns{display:flex;gap:8px}.btns button{flex:1;padding:7px 10px;border-radius:6px;font-size:12px;cursor:pointer;border:1px solid #d1d5db;transition:opacity .15s}
+#btn-reject{background:#f3f4f6;color:#374151}#btn-accept{background:#4f46e5;color:#fff;border-color:#4f46e5}
+.btns button:hover{opacity:.8}
+#done{display:none;text-align:center;padding:24px;color:#22c55e;font-size:13px;font-weight:600}
+</style></head><body>
+<div id="banner">
+  <p>Мы используем куки для аналитики и персонализации. <a href="#">Подробнее</a></p>
+  <div class="btns">
+    <button id="btn-reject">Отклонить</button>
+    <button id="btn-accept">Принять</button>
+  </div>
+</div>
+<div id="done">✓ Выбор сохранён</div>
+<script>
+function hide(){document.getElementById('banner').style.display='none';document.getElementById('done').style.display='block';}
+document.getElementById('btn-accept').onclick=hide;
+document.getElementById('btn-reject').onclick=hide;
+</script></body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- Cookie Banner: Classic -->
+<!-- GDPR: opt-in до скриптов | CCPA: opt-out | Симметричные кнопки -->
+<div id="cookie-banner" role="dialog" aria-modal="true"
+     aria-label="Настройки конфиденциальности"
+     style="position:fixed;bottom:0;left:0;right:0;background:#fff;
+            border-top:2px solid #e5e7eb;padding:16px 24px;
+            font-family:system-ui,sans-serif;z-index:9999;
+            display:flex;align-items:center;justify-content:space-between;gap:16px">
+  <p style="margin:0;font-size:14px;color:#374151;max-width:600px">
+    Мы используем куки для аналитики и персонализации.
+    <a href="/privacy" style="color:#4f46e5">Политика конфиденциальности</a>
+  </p>
+  <div style="display:flex;gap:8px;flex-shrink:0">
+    <button onclick="cookieReject()" aria-label="Отклонить все куки"
+            style="background:#f3f4f6;border:1px solid #d1d5db;
+                   color:#374151;padding:8px 16px;border-radius:6px;
+                   font-size:14px;cursor:pointer">
+      Отклонить
+    </button>
+    <button onclick="cookieAccept()" aria-label="Принять все куки"
+            style="background:#4f46e5;border:none;color:#fff;
+                   padding:8px 16px;border-radius:6px;
+                   font-size:14px;cursor:pointer">
+      Принять
+    </button>
+  </div>
+</div>
+<script>
+const CONSENT_KEY = 'uu_consent';
+const CONSENT_VERSION = '1.0';
+function cookieAccept() {
+  saveConsent({ analytics: true, marketing: false });
+  hideBanner();
+  loadAnalytics();
+}
+function cookieReject() {
+  saveConsent({ analytics: false, marketing: false });
+  hideBanner();
+}
+function saveConsent(categories) {
+  localStorage.setItem(CONSENT_KEY, JSON.stringify({
+    version: CONSENT_VERSION, timestamp: Date.now(), categories
+  }));
+}
+function hideBanner() {
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+function loadAnalytics() {
+  // Загружайте скрипты аналитики только здесь
+  // const s = document.createElement('script');
+  // s.src = 'https://www.googletagmanager.com/gtag/js?id=GA_ID';
+  // document.head.appendChild(s);
+}
+(function() {
+  const saved = JSON.parse(localStorage.getItem(CONSENT_KEY) || 'null');
+  if (saved?.version === CONSENT_VERSION) {
+    document.getElementById('cookie-banner').style.display = 'none';
+    if (saved.categories?.analytics) loadAnalytics();
+  }
+})();
+</script>
+[/CODE]

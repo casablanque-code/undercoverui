@@ -1,0 +1,22 @@
+{
+  "id": "privacy-policy-acceptance",
+  "title": "Privacy Policy Acceptance",
+  "category": "legal",
+  "description": "Чекбокс opt-in при регистрации. Не отмечен по умолчанию.",
+  "tags": [
+    "GDPR"
+  ],
+  "compliance": [
+    "GDPR Recital 32 — явное согласие",
+    "Opt-in выключен по умолчанию",
+    "Кнопка заблокирована до согласия"
+  ],
+  "regulatory_refs": [
+    "GDPR Recital 32",
+    "GDPR Art. 7(4) — no pre-ticked boxes"
+  ],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 890,
+  "hearts": 55
+}

@@ -1,0 +1,63 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh}
+#banner{background:#ef4444;color:#fff;padding:7px 16px;font-size:11px;display:flex;align-items:center;justify-content:space-between}
+#banner svg{flex-shrink:0}
+.left{display:flex;align-items:center;gap:7px}
+#status{font-size:10px;opacity:.75}
+main{display:flex;align-items:center;justify-content:center;height:calc(100vh - 34px);font-size:12px;color:#9ca3af}
+button{margin-top:12px;background:#fff;border:none;color:#ef4444;padding:5px 12px;border-radius:5px;font-size:11px;cursor:pointer;font-weight:600}
+</style></head><body>
+<div id="banner" role="alert">
+  <span class="left">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+    Нет подключения к интернету
+  </span>
+  <span id="status">Проверяем...</span>
+</div>
+<main>
+  <div style="text-align:center">
+    Страница<br><button onclick="simulate()">Симулировать reconnect</button>
+  </div>
+</main>
+<script>
+function simulate(){
+  document.getElementById('status').textContent='Подключено ✓';
+  document.getElementById('banner').style.background='#22c55e';
+  setTimeout(function(){document.getElementById('banner').style.display='none'},1000);
+}
+</script></body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- Network Offline Banner -->
+<div id="offline-banner" hidden role="alert" aria-live="assertive"
+     style="position:fixed;top:0;left:0;right:0;background:#ef4444;color:#fff;
+            padding:8px 16px;font-size:14px;display:flex;
+            align-items:center;justify-content:space-between;z-index:9999;
+            font-family:system-ui,sans-serif">
+  <span>Нет подключения к интернету</span>
+  <span id="offline-status" style="font-size:12px;opacity:0.8">Проверяем...</span>
+</div>
+<script>
+let checkInterval;
+function showOfflineBanner() {
+  document.getElementById('offline-banner').hidden = false;
+  checkInterval = setInterval(checkConnection, 3000);
+}
+function hideOfflineBanner() {
+  document.getElementById('offline-banner').hidden = true;
+  clearInterval(checkInterval);
+}
+async function checkConnection() {
+  try {
+    await fetch('/favicon.ico', { cache:'no-cache', signal:AbortSignal.timeout(3000) });
+    hideOfflineBanner();
+  } catch {
+    document.getElementById('offline-status').textContent = 'Нет связи';
+  }
+}
+window.addEventListener('offline', showOfflineBanner);
+window.addEventListener('online', checkConnection);
+</script>
+[/CODE]

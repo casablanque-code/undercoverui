@@ -1,0 +1,22 @@
+{
+  "id": "error-form-validation",
+  "title": "Form Validation Error",
+  "category": "error",
+  "description": "Inline-ошибки полей с ARIA. Подсветка + описание.",
+  "tags": [
+    "A11Y"
+  ],
+  "compliance": [
+    "WCAG 2.1 SC 3.3.1 — Error Identification",
+    "aria-invalid + aria-describedby",
+    "role=alert на сообщениях"
+  ],
+  "regulatory_refs": [
+    "WCAG 2.1 SC 3.3.1",
+    "EU Accessibility Act 2025"
+  ],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 1320,
+  "hearts": 88
+}

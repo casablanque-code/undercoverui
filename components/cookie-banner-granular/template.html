@@ -1,0 +1,105 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh;display:flex;align-items:flex-end}
+#panel{width:100%;background:#fff;border-top:2px solid #e5e7eb;padding:14px 16px}
+h3{font-size:12px;font-weight:600;margin-bottom:8px}
+.row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;font-size:11px;color:#374151}
+.toggle{position:relative;width:32px;height:18px;cursor:pointer}
+.toggle input{opacity:0;width:0;height:0;position:absolute}
+.slider{position:absolute;inset:0;background:#d1d5db;border-radius:9px;transition:.2s}
+.slider:before{content:'';position:absolute;width:14px;height:14px;left:2px;top:2px;background:#fff;border-radius:50%;transition:.2s}
+input:checked+.slider{background:#4f46e5}
+input:checked+.slider:before{left:16px}
+input:disabled+.slider{opacity:.6;cursor:not-allowed}
+.btns{display:flex;gap:6px;margin-top:10px}
+.btns button{flex:1;padding:6px;border-radius:5px;font-size:11px;cursor:pointer;border:1px solid #d1d5db;transition:opacity .15s}
+#b-r{background:#f3f4f6;color:#374151}#b-a{background:#4f46e5;color:#fff;border-color:#4f46e5}
+.btns button:hover{opacity:.8}
+#done{display:none;text-align:center;padding:20px;color:#22c55e;font-size:13px;font-weight:600}
+</style></head><body>
+<div id="panel">
+  <h3>Управление куки</h3>
+  <div class="row"><span>Необходимые</span><label class="toggle"><input type="checkbox" checked disabled><span class="slider"></span></label></div>
+  <div class="row"><span>Аналитика</span><label class="toggle"><input type="checkbox" id="c-an"><span class="slider"></span></label></div>
+  <div class="row"><span>Маркетинг</span><label class="toggle"><input type="checkbox" id="c-mk"><span class="slider"></span></label></div>
+  <div class="btns">
+    <button id="b-r">Отклонить всё</button>
+    <button id="b-a">Принять выбранное</button>
+  </div>
+</div>
+<div id="done">✓ Настройки сохранены</div>
+<script>
+function save(){document.getElementById('panel').style.display='none';document.getElementById('done').style.display='block';}
+document.getElementById('b-a').onclick=save;
+document.getElementById('b-r').onclick=function(){document.getElementById('c-an').checked=false;document.getElementById('c-mk').checked=false;save();}
+</script></body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- Cookie Banner: Granular Consent -->
+<div id="cookie-modal" role="dialog" aria-modal="true"
+     aria-label="Настройки конфиденциальности"
+     style="position:fixed;bottom:0;left:0;right:0;background:#fff;
+            border-top:2px solid #e5e7eb;padding:20px 24px;
+            font-family:system-ui,sans-serif;z-index:9999">
+  <h3 style="margin:0 0 12px;font-size:15px">Управление куки</h3>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+    <label style="display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <strong style="font-size:14px">Необходимые</strong>
+        <p style="margin:2px 0 0;font-size:12px;color:#6b7280">Обязательны для работы сайта</p>
+      </div>
+      <input type="checkbox" checked disabled aria-label="Необходимые куки (обязательно)">
+    </label>
+    <label style="display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <strong style="font-size:14px">Аналитика</strong>
+        <p style="margin:2px 0 0;font-size:12px;color:#6b7280">Помогает улучшать сайт</p>
+      </div>
+      <input type="checkbox" id="cat-analytics" aria-label="Аналитические куки">
+    </label>
+    <label style="display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <strong style="font-size:14px">Маркетинг</strong>
+        <p style="margin:2px 0 0;font-size:12px;color:#6b7280">Персонализированная реклама</p>
+      </div>
+      <input type="checkbox" id="cat-marketing" aria-label="Маркетинговые куки">
+    </label>
+  </div>
+  <div style="display:flex;gap:8px">
+    <button onclick="granularReject()"
+            style="flex:1;background:#f3f4f6;border:1px solid #d1d5db;
+                   padding:9px;border-radius:6px;font-size:14px;cursor:pointer">
+      Отклонить всё
+    </button>
+    <button onclick="granularAccept()"
+            style="flex:1;background:#4f46e5;border:none;color:#fff;
+                   padding:9px;border-radius:6px;font-size:14px;cursor:pointer">
+      Принять выбранное
+    </button>
+  </div>
+</div>
+<script>
+function granularAccept() {
+  const consent = {
+    version: '1.0', timestamp: Date.now(),
+    categories: {
+      necessary: true,
+      analytics: document.getElementById('cat-analytics').checked,
+      marketing: document.getElementById('cat-marketing').checked
+    }
+  };
+  localStorage.setItem('uu_consent', JSON.stringify(consent));
+  document.getElementById('cookie-modal').style.display = 'none';
+  if (consent.categories.analytics) loadAnalyticsScript();
+}
+function granularReject() {
+  localStorage.setItem('uu_consent', JSON.stringify({
+    version: '1.0', timestamp: Date.now(),
+    categories: { necessary: true, analytics: false, marketing: false }
+  }));
+  document.getElementById('cookie-modal').style.display = 'none';
+}
+function loadAnalyticsScript() { /* загрузи GA/Метрику динамически */ }
+</script>
+[/CODE]

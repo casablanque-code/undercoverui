@@ -1,0 +1,51 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px}
+.icon{color:#f59e0b;margin-bottom:14px}
+h1{font-size:18px;font-weight:600;margin-bottom:6px}
+p{font-size:12px;color:#6b7280;margin-bottom:18px;line-height:1.5;max-width:220px}
+button{background:#111;border:none;color:#fff;padding:9px 20px;border-radius:7px;font-size:12px;cursor:pointer;transition:opacity .15s}
+button:hover{opacity:.8}
+</style></head><body>
+<main role="alert">
+  <div class="icon"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+  <h1>Что-то пошло не так</h1>
+  <p>На сервере произошла ошибка. Мы уже знаем и работаем над исправлением.</p>
+  <button onclick="location.reload()">Попробовать снова</button>
+</main>
+</body></html>
+[/PREVIEW]
+
+[CODE]
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>500 — Ошибка сервера</title>
+  <style>
+    body { margin:0; font-family:system-ui,sans-serif;
+           display:flex; align-items:center; justify-content:center;
+           min-height:100vh; background:#f9fafb; text-align:center; }
+    .icon { font-size:48px; margin-bottom:16px; color:#f59e0b; }
+    h1 { font-size:22px; margin:0 0 8px; }
+    p  { font-size:14px; color:#6b7280; margin:0 0 24px; max-width:360px; }
+    button { background:#111; border:none; color:#fff;
+             padding:10px 24px; border-radius:8px; font-size:14px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <main role="main">
+    <div class="icon" aria-hidden="true">
+      <svg width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+    </div>
+    <h1>Что-то пошло не так</h1>
+    <p>На сервере произошла ошибка. Мы уже знаем об этом и работаем над исправлением.</p>
+    <button onclick="window.location.reload()">Попробовать снова</button>
+  </main>
+</body>
+</html>
+[/CODE]

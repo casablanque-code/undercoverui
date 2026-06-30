@@ -1,0 +1,22 @@
+{
+  "id": "cookie-banner-classic",
+  "title": "Cookie Banner — Classic",
+  "category": "legal",
+  "description": "Нижняя полоса, симметричные кнопки, скрипты блокированы до согласия.",
+  "tags": ["GDPR", "CCPA", "A11Y"],
+  "compliance": [
+    "GDPR opt-in перед загрузкой скриптов аналитики",
+    "Симметричный визуальный вес кнопок (CNIL/ICO)",
+    "Согласие с версией и timestamp в localStorage",
+    "WAI-ARIA role=dialog, aria-modal"
+  ],
+  "regulatory_refs": [
+    "GDPR Recital 32 — freely given consent",
+    "GDPR Art. 7 — conditions for consent",
+    "CNIL guidelines 2022 — equal prominence of accept/reject"
+  ],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 1420,
+  "hearts": 84
+}

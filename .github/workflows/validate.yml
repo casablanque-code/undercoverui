@@ -1,0 +1,66 @@
+name: Validate Components
+
+on:
+  pull_request:
+    paths:
+      - 'components/**'
+      - 'scripts/**'
+      - 'tests/**'
+  push:
+    branches: [main]
+    paths:
+      - 'components/**'
+
+jobs:
+  validate:
+    name: Структура и схема meta.json
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+
+  a11y:
+    name: axe-core accessibility
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:a11y
+
+  click-parity:
+    name: Click-parity (dark patterns)
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:click-parity
+
+  build:
+    name: Vite build
+    runs-on: ubuntu-latest
+    needs: [validate, a11y, click-parity]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build

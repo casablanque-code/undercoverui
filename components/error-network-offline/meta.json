@@ -1,0 +1,19 @@
+{
+  "id": "error-network-offline",
+  "title": "Network Offline Banner",
+  "category": "error",
+  "description": "Тонкая полоска при потере связи. Пропадает при reconnect.",
+  "tags": [
+    "A11Y"
+  ],
+  "compliance": [
+    "role=alert",
+    "aria-live=assertive",
+    "Авто-reconnect polling"
+  ],
+  "regulatory_refs": [],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 740,
+  "hearts": 68
+}

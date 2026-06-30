@@ -1,0 +1,42 @@
+[PREVIEW]
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #f4f4f2; height: 100vh; display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .wrap { text-align: center; }
+  .icon { color: #d1d5db; margin-bottom: 12px; }
+  h2 { font-size: 15px; font-weight: 600; margin-bottom: 5px; }
+  p { font-size: 11px; color: #6b7280; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="icon">
+      <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.25" viewBox="0 0 24 24">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+    </div>
+    <h2>Уведомлений нет</h2>
+    <p>Здесь будут появляться важные события</p>
+  </div>
+</body>
+</html>
+[/PREVIEW]
+
+[CODE]
+<!-- No Notifications State -->
+<div style="text-align:center;padding:48px 24px;font-family:system-ui,sans-serif">
+  <div style="color:#d1d5db;margin-bottom:16px" aria-hidden="true">
+    <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.25" viewBox="0 0 24 24">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+  </div>
+  <h3 style="font-size:16px;margin:0 0 6px;font-weight:600">Уведомлений нет</h3>
+  <p style="font-size:13px;color:#9ca3af;margin:0">Здесь будут появляться важные события</p>
+</div>
+[/CODE]

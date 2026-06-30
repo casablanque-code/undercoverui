@@ -1,0 +1,68 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+@keyframes shimmer{0%{background-position:-300px 0}100%{background-position:300px 0}}
+.sk{background:linear-gradient(90deg,#e5e7eb 25%,#f3f4f6 50%,#e5e7eb 75%);background-size:600px 100%;animation:shimmer 1.4s ease-in-out infinite;border-radius:5px}
+@media(prefers-reduced-motion:reduce){.sk{animation:none;background:#e5e7eb}}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;width:200px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.img.sk{height:90px;border-radius:0}
+.body{padding:12px;display:flex;flex-direction:column;gap:7px}
+.line1.sk{height:11px;width:70%}
+.line2.sk{height:9px;width:90%}
+.line3.sk{height:9px;width:50%}
+.foot{display:flex;justify-content:space-between;margin-top:4px}
+.btn.sk{height:24px;width:70px;border-radius:5px}
+.av.sk{height:24px;width:24px;border-radius:50%}
+</style></head><body>
+<div class="card" role="status" aria-busy="true" aria-label="Загрузка">
+  <div class="img sk"></div>
+  <div class="body">
+    <div class="line1 sk"></div>
+    <div class="line2 sk"></div>
+    <div class="line3 sk"></div>
+    <div class="foot"><div class="btn sk"></div><div class="av sk"></div></div>
+  </div>
+</div>
+</body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- Skeleton Loading: Cards -->
+<style>
+@keyframes skeleton-shimmer {
+  0%   { background-position: -300px 0; }
+  100% { background-position: 300px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 600px 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: 6px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; background: #e5e7eb; }
+}
+</style>
+
+<div role="status" aria-busy="true" aria-label="Загрузка содержимого"
+     style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;width:280px">
+  <div class="skeleton" style="height:160px;border-radius:0"></div>
+  <div style="padding:16px;display:flex;flex-direction:column;gap:8px">
+    <div class="skeleton" style="height:14px;width:75%"></div>
+    <div class="skeleton" style="height:12px"></div>
+    <div class="skeleton" style="height:12px;width:60%"></div>
+    <div style="display:flex;justify-content:space-between;margin-top:4px">
+      <div class="skeleton" style="height:28px;width:80px;border-radius:6px"></div>
+      <div class="skeleton" style="height:28px;width:28px;border-radius:50%"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function doneLoading(el) {
+  el.removeAttribute('aria-busy');
+  el.removeAttribute('aria-label');
+  // el.innerHTML = реальный контент
+}
+</script>
+[/CODE]

@@ -1,0 +1,80 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh;display:flex;align-items:center;justify-content:center}
+#tc{position:fixed;bottom:12px;right:12px;display:flex;flex-direction:column-reverse;gap:6px;z-index:9}
+.t{background:#fff;border:1px solid #e5e7eb;border-radius:7px;padding:10px 12px;min-width:180px;max-width:220px;box-shadow:0 2px 10px rgba(0,0,0,.1);display:flex;align-items:flex-start;gap:8px;animation:tin .2s ease;pointer-events:all}
+@keyframes tin{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){@keyframes tin{from{opacity:0}to{opacity:1}}}
+.ts{border-left:3px solid #22c55e}.te{border-left:3px solid #ef4444}.ti{border-left:3px solid #3b82f6}
+.tt{font-size:11px;font-weight:600;color:#111;margin:0 0 2px}.tm{font-size:10px;color:#6b7280;margin:0}
+.tc-btn{background:none;border:none;color:#9ca3af;cursor:pointer;font-size:14px;margin-left:auto;padding:0;line-height:1;flex-shrink:0}
+.btn-row{display:flex;gap:6px;margin:14px;flex-wrap:wrap}
+.btn-row button{padding:6px 10px;border-radius:5px;border:none;font-size:11px;cursor:pointer;color:#fff;transition:opacity .15s}
+.btn-row button:hover{opacity:.8}
+</style></head><body>
+<div class="btn-row">
+  <button style="background:#22c55e" onclick="show('Сохранено','Изменения применены','ts')">Success</button>
+  <button style="background:#ef4444" onclick="show('Ошибка','Не удалось загрузить','te')">Error</button>
+  <button style="background:#3b82f6" onclick="show('Инфо','Обновление доступно','ti')">Info</button>
+</div>
+<div id="tc" role="region" aria-live="polite" aria-label="Уведомления"></div>
+<script>
+var n=0;
+function show(title,msg,type){
+  var id=++n,el=document.createElement('div');
+  el.className='t '+type;el.id='t'+id;
+  el.innerHTML='<div style="flex:1"><p class="tt">'+title+'</p><p class="tm">'+msg+'</p></div><button class="tc-btn" onclick="rm('+id+')" aria-label="Закрыть">×</button>';
+  document.getElementById('tc').appendChild(el);
+  setTimeout(function(){rm(id)},3500);
+}
+function rm(id){var e=document.getElementById('t'+id);if(e)e.remove();}
+</script></body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- Toast Notification Stack -->
+<div id="toast-container" role="region" aria-label="Уведомления"
+     aria-live="polite" aria-atomic="false"
+     style="position:fixed;bottom:24px;right:24px;
+            display:flex;flex-direction:column-reverse;gap:8px;z-index:9999;
+            pointer-events:none;font-family:system-ui,sans-serif">
+</div>
+<style>
+.toast-item {
+  background:#fff;border:1px solid #e5e7eb;border-radius:8px;
+  padding:12px 14px;box-shadow:0 4px 16px rgba(0,0,0,.1);
+  min-width:240px;max-width:320px;pointer-events:all;
+  display:flex;align-items:flex-start;gap:10px;
+  animation:toast-in .2s ease;
+}
+@keyframes toast-in {
+  from { opacity:0; transform:translateX(12px); }
+  to   { opacity:1; transform:translateX(0); }
+}
+@media (prefers-reduced-motion:reduce) { .toast-item { animation:none; } }
+.toast-success { border-left:3px solid #22c55e; }
+.toast-error   { border-left:3px solid #ef4444; }
+.toast-info    { border-left:3px solid #3b82f6; }
+</style>
+<script>
+let toastId = 0;
+function showToast({ title, message, type = 'info', duration = 4000 }) {
+  const id = ++toastId;
+  const el = document.createElement('div');
+  el.className = 'toast-item toast-' + type;
+  el.id = 'toast-' + id;
+  el.innerHTML = `<div style="flex:1">
+    <p style="font-size:14px;font-weight:600;margin:0 0 2px">${title}</p>
+    ${message ? '<p style="font-size:12px;color:#6b7280;margin:0">' + message + '</p>' : ''}
+  </div>
+  <button onclick="dismissToast(${id})" aria-label="Закрыть"
+          style="background:none;border:none;cursor:pointer;color:#9ca3af;font-size:18px;padding:0">×</button>`;
+  document.getElementById('toast-container').appendChild(el);
+  setTimeout(() => dismissToast(id), duration);
+}
+function dismissToast(id) {
+  const el = document.getElementById('toast-' + id);
+  if (el) el.remove();
+}
+</script>
+[/CODE]

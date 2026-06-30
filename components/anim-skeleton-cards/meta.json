@@ -1,0 +1,20 @@
+{
+  "id": "anim-skeleton-cards",
+  "title": "Skeleton Loading Cards",
+  "category": "anim",
+  "description": "Мерцающий скелетон для карточек. CSS-only, prefers-reduced-motion.",
+  "tags": [
+    "A11Y"
+  ],
+  "compliance": [
+    "prefers-reduced-motion: fallback без анимации",
+    "aria-busy=true"
+  ],
+  "regulatory_refs": [
+    "WCAG 2.1 SC 2.3.3 — Animation from Interactions"
+  ],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 1860,
+  "hearts": 155
+}

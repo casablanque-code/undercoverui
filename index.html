@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UndercoverUI — Compliance Components</title>
+  <meta name="description" content="Открытый реестр compliance-компонентов: куки-баннеры, страницы ошибок, empty states с реальным GDPR/CCPA соответствием.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="/">
+      <span class="logo-mark">U_</span>
+      <span class="logo-text">Undercover<span>UI</span></span>
+    </a>
+    <nav>
+      <a class="nav-link" href="#components">Компоненты</a>
+      <a class="nav-link" href="#compliance">Compliance</a>
+      <a class="nav-link" href="/docs/quick-start/">Документация</a>
+    </nav>
+    <a class="btn-primary" href="https://github.com/casablanque-code/undercoverui" target="_blank" rel="noopener">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.185 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.342-3.369-1.342-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.203 22 16.447 22 12.021 22 6.484 17.523 2 12 2z"/></svg>
+      Добавить компонент
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Открытый реестр · v0.2</div>
+  <h1>Compliance-компоненты,<br>которые <em>действительно</em> работают</h1>
+  <p class="hero-sub">Куки-баннеры, 404, пустые корзины — готовые фрагменты кода с реальным GDPR/CCPA соответствием. Скопировал — вставил.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><strong id="stat-count">—</strong>компонентов</div>
+    <div class="stat-divider"></div>
+    <div class="hero-stat"><strong>4</strong>категории</div>
+    <div class="stat-divider"></div>
+    <div class="hero-stat"><strong>0</strong>зависимостей</div>
+  </div>
+</section>
+
+<div class="search-wrap" id="components">
+  <div class="search-bar">
+    <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input class="search-input" id="searchInput" type="text" placeholder="Поиск: cookie, 404, корзина...">
+  </div>
+</div>
+
+<div class="filters-wrap">
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-cat="all">
+      Все <span class="filter-count" id="fc-all">0</span>
+    </button>
+    <button class="filter-btn" data-cat="legal">
+      <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Legal & GDPR <span class="filter-count" id="fc-legal">0</span>
+    </button>
+    <button class="filter-btn" data-cat="error">
+      <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Errors & System <span class="filter-count" id="fc-error">0</span>
+    </button>
+    <button class="filter-btn" data-cat="empty">
+      <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+      Empty States <span class="filter-count" id="fc-empty">0</span>
+    </button>
+    <button class="filter-btn" data-cat="anim">
+      <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Анимации <span class="filter-count" id="fc-anim">0</span>
+    </button>
+  </div>
+</div>
+
+<main>
+  <div class="section-meta">
+    <span class="section-label" id="gridLabel">— компонентов</span>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<hr class="section-divider">
+
+<section class="section-wrap" id="compliance">
+  <h2 class="section-title">Как мы проверяем соответствие</h2>
+  <p class="section-sub">Каждый Legal-компонент проходит этот чеклист перед добавлением в реестр</p>
+  <div class="checklist">
+    <div class="checklist-item">
+      <div class="check-icon check-ok">✓</div>
+      <div class="checklist-text">
+        <strong>Симметрия кнопок «Принять» и «Отклонить»</strong>
+        <p>Обе кнопки имеют одинаковый визуальный вес, размер и расположение. Разный контраст — нарушение GDPR (Recital 32), основание для штрафа CNIL/ICO. Проверяется автоматически — <a href="/docs/compliance/" style="color:inherit;text-decoration:underline">click-parity тестом</a> в CI.</p>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon check-ok">✓</div>
+      <div class="checklist-text">
+        <strong>Скрипты аналитики не грузятся до согласия</strong>
+        <p>GA, Яндекс.Метрика и др. подключаются динамически только после клика «Принять». Каждый компонент предоставляет <span class="code-inline">onConsentGranted(callback)</span>.</p>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon check-ok">✓</div>
+      <div class="checklist-text">
+        <strong>Согласие с версией и timestamp</strong>
+        <p>localStorage хранит <span class="code-inline">{version, timestamp, categories}</span>. При обновлении политики конфиденциальности старое согласие инвалидируется автоматически.</p>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon check-ok">✓</div>
+      <div class="checklist-text">
+        <strong>Возможность отозвать согласие</strong>
+        <p>Ссылка «Настройки Cookie» остаётся доступной в любой момент через футер. Требование GDPR ст. 7(3) — согласие должно отзываться так же легко, как даётся.</p>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon check-ok">✓</div>
+      <div class="checklist-text">
+        <strong>WAI-ARIA доступность</strong>
+        <p>role="dialog", aria-modal, aria-label на кнопках, управление с клавиатуры. Требование EU Accessibility Act (июнь 2025). Проверяется axe-core в CI.</p>
+      </div>
+    </div>
+    <div class="checklist-item">
+      <div class="check-icon check-warn">!</div>
+      <div class="checklist-text">
+        <strong>EU vs US — принципиально разные модели</strong>
+        <p>GDPR: opt-in до установки нерекламных куки. CCPA: только возможность opt-out. Компоненты помечены тегами
+          <span class="tag tag-gdpr" style="font-size:9px">GDPR</span>
+          <span class="tag tag-ccpa" style="font-size:9px">CCPA</span>. Один баннер не закрывает оба требования.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<section class="section-wrap" id="docs">
+  <h2 class="section-title">Документация</h2>
+  <p class="section-sub">Всё необходимое для использования и контрибьюции</p>
+  <div class="docs-grid">
+    <a class="doc-card" href="/docs/quick-start/">
+      <div class="doc-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="doc-title">Быстрый старт</div>
+      <div class="doc-desc">Скопируй компонент, вставь в проект, адаптируй цвета. Никаких npm install.</div>
+    </a>
+    <a class="doc-card" href="/docs/contribution/">
+      <div class="doc-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+      <div class="doc-title">Добавить компонент</div>
+      <div class="doc-desc">PR с папкой component.html + meta.json. GitHub Actions проверит a11y и структуру.</div>
+    </a>
+    <a class="doc-card" href="/docs/compliance/">
+      <div class="doc-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <div class="doc-title">Чеклист GDPR/CCPA</div>
+      <div class="doc-desc">Полный список требований с примерами нарушений. Обновляется при изменении регуляторных гайдов.</div>
+    </a>
+    <a class="doc-card" href="/docs/contribution/#meta-json">
+      <div class="doc-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <div class="doc-title">Формат meta.json</div>
+      <div class="doc-desc">Схема метаданных: title, tags, compliance[], author, version. Валидируется в CI.</div>
+    </a>
+    <a class="doc-card" href="/docs/compliance/#testing">
+      <div class="doc-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="doc-title">Тестирование</div>
+      <div class="doc-desc">axe-core для accessibility, Playwright для click-parity и e2e. Как запускать локально перед PR.</div>
+    </a>
+    <a class="doc-card" href="/docs/changelog/">
+      <div class="doc-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <div class="doc-title">Compliance Changelog</div>
+      <div class="doc-desc">История изменений регуляторных требований с указанием затронутых компонентов.</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 UndercoverUI — открытый проект · MIT</span>
+    <div class="footer-links">
+      <a href="https://github.com/casablanque-code/undercoverui" target="_blank" rel="noopener">GitHub</a>
+      <a href="/docs/quick-start/">Документация</a>
+      <a href="#compliance">Compliance</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-sub" id="modalSub"></div>
+      </div>
+      <button class="modal-close" id="modalCloseBtn" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="modal-tabs">
+      <div class="modal-tab active" id="tab-preview">Превью</div>
+      <div class="modal-tab" id="tab-code">Исходный код</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-preview-area" id="modalPreviewArea">
+        <iframe id="modalIframe" sandbox="allow-scripts allow-same-origin" title="Превью компонента"></iframe>
+      </div>
+      <div class="modal-code-area" id="modalCodeArea">
+        <pre class="code-block" id="codeBlock"></pre>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="compliance-badges" id="modalBadges"></div>
+      <button class="modal-copy-btn" id="modalCopyBtn">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Скопировать код
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-dot"></div>
+  <span id="toastMsg">Код скопирован</span>
+</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

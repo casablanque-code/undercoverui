@@ -1,0 +1,103 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;position:relative}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1}
+.icon{color:#8B7CF6;margin-bottom:12px;animation:pop .4s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes pop{from{transform:scale(0);opacity:0}80%{transform:scale(1.15)}to{transform:scale(1);opacity:1}}
+h2{font-size:18px;font-weight:600;margin-bottom:6px}
+p{font-size:12px;color:#6b7280;margin-bottom:16px}
+a{display:inline-block;background:#4f46e5;color:#fff;padding:9px 20px;border-radius:7px;font-size:12px;text-decoration:none;transition:opacity .15s}
+a:hover{opacity:.85}
+</style></head><body>
+<canvas id="cv"></canvas>
+<div class="wrap" role="status" aria-live="polite">
+  <div class="icon"><svg width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+  <h2>Готово!</h2>
+  <p>Ваш заказ успешно оформлен</p>
+  <a href="#">Перейти к заказам</a>
+</div>
+<script>
+var cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+var W=cv.width=window.innerWidth,H=cv.height=window.innerHeight;
+var colors=['#8B7CF6','#22c55e','#f59e0b','#ef4444','#3b82f6'];
+var ps=Array.from({length:90},function(){return{x:Math.random()*W,y:Math.random()*H-H,r:Math.random()*5+3,d:Math.random()*3+2,c:colors[Math.floor(Math.random()*5)],t:Math.random()*10-10,ta:0,tai:Math.random()*.07+.05};});
+var frame,start=Date.now();
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ps.forEach(function(p){
+    ctx.fillStyle=p.c;ctx.beginPath();
+    ctx.ellipse(p.x+p.t,p.y,p.r,p.r*.4,p.ta,0,Math.PI*2);ctx.fill();
+    p.y+=p.d;p.ta+=p.tai;p.t=Math.sin(p.ta)*12;
+    if(p.y>H){p.y=-10;p.x=Math.random()*W;}
+  });
+  if(Date.now()-start<4500)frame=requestAnimationFrame(draw);else ctx.clearRect(0,0,W,H);
+}
+if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches)draw();
+</script></body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- Confetti Success Screen -->
+<canvas id="confetti-canvas" aria-hidden="true"
+        style="position:fixed;inset:0;pointer-events:none;z-index:0"></canvas>
+
+<div role="status" aria-live="polite"
+     style="position:relative;z-index:1;text-align:center;
+            padding:64px 24px;font-family:system-ui,sans-serif">
+  <div style="color:#22c55e;margin-bottom:20px;
+              animation:pop .4s cubic-bezier(.175,.885,.32,1.275)" aria-hidden="true">
+    <svg width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </svg>
+  </div>
+  <h2 style="font-size:24px;margin:0 0 8px">Готово!</h2>
+  <p style="font-size:15px;color:#6b7280;margin:0 0 28px">Ваш заказ успешно оформлен</p>
+  <a href="/orders" style="display:inline-block;background:#4f46e5;color:#fff;
+                           padding:12px 28px;border-radius:8px;font-size:15px;text-decoration:none">
+    Перейти к заказам
+  </a>
+</div>
+
+<style>
+@keyframes pop {
+  from { transform:scale(0); opacity:0; }
+  80%  { transform:scale(1.1); }
+  to   { transform:scale(1); opacity:1; }
+}
+</style>
+
+<script>
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const colors = ['#4f46e5','#22c55e','#f59e0b','#ef4444','#8b5cf6'];
+  const particles = Array.from({ length: 90 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height - canvas.height,
+    r: Math.random() * 6 + 3,
+    d: Math.random() * 3 + 2,
+    color: colors[Math.floor(Math.random() * 5)],
+    tilt: 0, tiltAngle: 0,
+    tiltAngleInc: Math.random() * 0.07 + 0.05,
+  }));
+  const start = Date.now();
+  (function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.ellipse(p.x + p.tilt, p.y, p.r, p.r * 0.4, p.tiltAngle, 0, Math.PI * 2);
+      ctx.fill();
+      p.y += p.d; p.tiltAngle += p.tiltAngleInc; p.tilt = Math.sin(p.tiltAngle) * 12;
+      if (p.y > canvas.height) { p.y = -20; p.x = Math.random() * canvas.width; }
+    });
+    if (Date.now() - start < 4500) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  })();
+}
+</script>
+[/CODE]

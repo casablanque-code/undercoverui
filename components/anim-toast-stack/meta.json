@@ -1,0 +1,19 @@
+{
+  "id": "anim-toast-stack",
+  "title": "Toast Notification Stack",
+  "category": "anim",
+  "description": "Очередь уведомлений снизу-справа. Автозакрытие + ручное.",
+  "tags": [
+    "A11Y"
+  ],
+  "compliance": [
+    "aria-live=polite",
+    "prefers-reduced-motion",
+    "aria-label на кнопке закрытия"
+  ],
+  "regulatory_refs": [],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 1140,
+  "hearts": 103
+}

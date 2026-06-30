@@ -1,0 +1,18 @@
+{
+  "id": "error-payment-failed",
+  "title": "Payment Failed",
+  "category": "error",
+  "description": "Экран ошибки оплаты с инструкцией и кнопкой retry.",
+  "tags": [
+    "A11Y"
+  ],
+  "compliance": [
+    "role=alert",
+    "Конкретный список причин для пользователя"
+  ],
+  "regulatory_refs": [],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 610,
+  "hearts": 47
+}

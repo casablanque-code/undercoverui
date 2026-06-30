@@ -1,0 +1,58 @@
+name: Предложить компонент
+description: Поделись готовым кодом компонента — мейнтейнер оформит его в PR.
+title: "[component] "
+labels: ["new-component"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Название компонента
+      placeholder: "Cookie Banner — Sidebar Variant"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Категория
+      options:
+        - legal (GDPR/CCPA)
+        - error (404, 500, и т.д.)
+        - empty (пустые состояния)
+        - anim (анимации/индикаторы)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Краткое описание
+      placeholder: Что делает компонент, в чём отличие от существующих похожих
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Код компонента
+      description: Вставь полный HTML/CSS/JS. Если компонент legal — укажи как реализовано согласие (localStorage структура).
+      render: html
+    validations:
+      required: true
+
+  - type: textarea
+    id: compliance
+    attributes:
+      label: Compliance (только для legal-компонентов)
+      description: Каким требованиям соответствует? Ссылки на статьи GDPR/CCPA приветствуются.
+      placeholder: |
+        - GDPR opt-in до загрузки скриптов
+        - Симметричные кнопки Accept/Reject
+
+  - type: input
+    id: author
+    attributes:
+      label: Твой GitHub username
+      description: Будет указан как автор компонента
+    validations:
+      required: true

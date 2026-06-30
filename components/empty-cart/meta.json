@@ -1,0 +1,18 @@
+{
+  "id": "empty-cart",
+  "title": "Empty Cart",
+  "category": "empty",
+  "description": "Пустая корзина с мотивирующим CTA. Без грустных текстов.",
+  "tags": [
+    "A11Y"
+  ],
+  "compliance": [
+    "Семантичный <section>",
+    "CTA ведёт к действию"
+  ],
+  "regulatory_refs": [],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 2105,
+  "hearts": 192
+}

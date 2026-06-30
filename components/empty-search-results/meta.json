@@ -1,0 +1,18 @@
+{
+  "id": "empty-search-results",
+  "title": "No Search Results",
+  "category": "empty",
+  "description": "«Ничего не найдено» с предложениями похожих запросов.",
+  "tags": [
+    "A11Y"
+  ],
+  "compliance": [
+    "role=status",
+    "aria-live=polite"
+  ],
+  "regulatory_refs": [],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 1540,
+  "hearts": 134
+}

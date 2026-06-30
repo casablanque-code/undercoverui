@@ -1,0 +1,66 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh;display:flex;align-items:center;justify-content:center}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:20px;width:240px}
+h3{font-size:13px;font-weight:600;margin-bottom:14px}
+.field{margin-bottom:10px}
+input[type=text],input[type=email]{width:100%;border:1px solid #d1d5db;border-radius:5px;padding:7px 10px;font-size:12px;outline:none;font-family:inherit;transition:border-color .15s}
+input[type=text]:focus,input[type=email]:focus{border-color:#8B7CF6}
+.check-row{display:flex;align-items:flex-start;gap:7px;margin:12px 0}
+.check-row input[type=checkbox]{margin-top:2px;accent-color:#4f46e5;cursor:pointer;flex-shrink:0}
+.check-row label{font-size:11px;color:#374151;line-height:1.4;cursor:pointer}
+.check-row a{color:#4f46e5}
+button{width:100%;background:#4f46e5;border:none;color:#fff;padding:9px;border-radius:6px;font-size:12px;cursor:pointer;transition:opacity .15s}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:not(:disabled):hover{opacity:.85}
+#ok{display:none;text-align:center;padding:20px;color:#22c55e;font-weight:600;font-size:13px}
+</style></head><body>
+<div class="card">
+  <div id="form-wrap">
+    <h3>Регистрация</h3>
+    <div class="field"><input type="text" placeholder="Имя"></div>
+    <div class="field"><input type="email" placeholder="Email"></div>
+    <div class="check-row">
+      <input type="checkbox" id="pp" onchange="document.getElementById('reg-btn').disabled=!this.checked">
+      <label for="pp">Я принимаю <a href="#">условия</a> и <a href="#">политику конфиденциальности</a></label>
+    </div>
+    <button id="reg-btn" disabled onclick="document.getElementById('form-wrap').style.display='none';document.getElementById('ok').style.display='block'">Зарегистрироваться</button>
+  </div>
+  <div id="ok">✓ Аккаунт создан</div>
+</div>
+</body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- Privacy Policy Acceptance — GDPR Recital 32 -->
+<!-- Чекбокс НЕ должен быть отмечен по умолчанию. Pre-checked = нарушение GDPR. -->
+<form id="reg-form" onsubmit="handleReg(event)">
+  <input type="text" name="name" placeholder="Имя" required>
+  <input type="email" name="email" placeholder="Email" required>
+
+  <div style="display:flex;align-items:flex-start;gap:8px;margin:16px 0">
+    <input type="checkbox" id="privacy-check" name="privacy_accepted" required
+           aria-required="true" aria-describedby="privacy-hint"
+           style="margin-top:2px;accent-color:#4f46e5;cursor:pointer"
+           onchange="document.getElementById('submit-btn').disabled=!this.checked;
+                     document.getElementById('submit-btn').style.opacity=this.checked?'1':'0.4'">
+    <label for="privacy-check" style="font-size:14px;color:#374151;cursor:pointer">
+      Я принимаю <a href="/terms" target="_blank" style="color:#4f46e5">условия использования</a>
+      и <a href="/privacy" target="_blank" style="color:#4f46e5">политику конфиденциальности</a>
+    </label>
+  </div>
+  <span id="privacy-hint" style="display:block;font-size:12px;color:#9ca3af;margin:-10px 0 16px 24px">Обязательное поле</span>
+
+  <button type="submit" id="submit-btn" disabled
+          style="width:100%;background:#4f46e5;border:none;color:#fff;
+                 padding:10px;border-radius:6px;font-size:14px;cursor:pointer;opacity:0.4">
+    Зарегистрироваться
+  </button>
+</form>
+<script>
+function handleReg(e) {
+  e.preventDefault();
+  // ваша логика регистрации
+}
+</script>
+[/CODE]

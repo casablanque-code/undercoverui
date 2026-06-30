@@ -1,0 +1,22 @@
+{
+  "id": "terms-update-notification",
+  "title": "Terms Update Notification",
+  "category": "legal",
+  "description": "Модал об обновлении условий. Блокирует UI до подтверждения.",
+  "tags": [
+    "GDPR",
+    "A11Y"
+  ],
+  "compliance": [
+    "GDPR Art. 7 — версионирование согласия",
+    "Focus trap при открытом модале"
+  ],
+  "regulatory_refs": [
+    "GDPR Art. 7",
+    "GDPR Art. 13 — right to be informed"
+  ],
+  "author": "casablanque-code",
+  "version": "1.0.0",
+  "copies": 380,
+  "hearts": 44
+}

@@ -1,0 +1,76 @@
+[PREVIEW]
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:system-ui,sans-serif;background:#f4f4f2;height:100vh}
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:16px}
+#modal{background:#fff;border-radius:10px;padding:20px;max-width:260px;width:100%}
+.icon{color:#8B7CF6;margin-bottom:10px}
+h2{font-size:13px;font-weight:600;margin-bottom:6px}
+p{font-size:11px;color:#6b7280;line-height:1.5;margin-bottom:14px}
+strong{color:#111}
+.btns{display:flex;gap:6px}
+.btns button{flex:1;padding:7px;border-radius:5px;font-size:11px;cursor:pointer;transition:opacity .15s}
+#b-r{background:#f3f4f6;border:1px solid #d1d5db;color:#374151;text-decoration:none;display:flex;align-items:center;justify-content:center}
+#b-a{background:#4f46e5;border:none;color:#fff}
+.btns button:hover{opacity:.8}
+#done{display:none;text-align:center;padding:20px;color:#22c55e;font-weight:600;font-size:13px}
+</style></head><body>
+<div id="overlay">
+  <div id="modal">
+    <div class="icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></div>
+    <h2>Мы обновили условия</h2>
+    <p>С <strong>01.07.2026</strong> вступают в силу обновлённые условия. Основные изменения — п. 3.2 и п. 5.1.</p>
+    <div id="btns-w" class="btns">
+      <button id="b-r">Читать</button>
+      <button id="b-a" onclick="accept()">Принять</button>
+    </div>
+    <div id="done">✓ Принято</div>
+  </div>
+</div>
+<script>
+function accept(){
+  document.getElementById('btns-w').style.display='none';
+  document.getElementById('done').style.display='block';
+  setTimeout(function(){document.getElementById('overlay').style.display='none'},1200);
+}
+</script></body></html>
+[/PREVIEW]
+
+[CODE]
+<!-- Terms Update Notification Modal -->
+<div id="terms-modal" role="dialog" aria-modal="true"
+     aria-labelledby="terms-title"
+     style="position:fixed;inset:0;background:rgba(0,0,0,0.5);
+            display:flex;align-items:center;justify-content:center;
+            z-index:9999;padding:16px;font-family:system-ui,sans-serif">
+  <div style="background:#fff;border-radius:12px;padding:24px;max-width:440px;width:100%">
+    <h2 id="terms-title" style="margin:0 0 8px;font-size:18px">Мы обновили условия</h2>
+    <p style="font-size:14px;color:#374151;line-height:1.5;margin:0 0 20px">
+      С <strong>01.07.2026</strong> вступают в силу обновлённые условия использования.
+      Изменения касаются п. 3.2 и п. 5.1.
+    </p>
+    <div style="display:flex;gap:8px">
+      <a href="/terms" target="_blank"
+         style="flex:1;background:#f3f4f6;border:1px solid #d1d5db;color:#374151;
+                padding:9px;border-radius:6px;font-size:14px;text-align:center;text-decoration:none">
+        Читать условия
+      </a>
+      <button onclick="acceptTerms()"
+              style="flex:1;background:#4f46e5;border:none;color:#fff;
+                     padding:9px;border-radius:6px;font-size:14px;cursor:pointer">
+        Принять и продолжить
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+const TERMS_VERSION = '2.1.0';
+function acceptTerms() {
+  localStorage.setItem('terms_accepted', JSON.stringify({ version: TERMS_VERSION, timestamp: Date.now() }));
+  document.getElementById('terms-modal').style.display = 'none';
+}
+(function() {
+  const saved = JSON.parse(localStorage.getItem('terms_accepted') || 'null');
+  if (saved?.version === TERMS_VERSION) document.getElementById('terms-modal').style.display = 'none';
+})();
+</script>
+[/CODE]
