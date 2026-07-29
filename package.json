@@ -6,17 +6,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "npm run build && wrangler dev",
     "validate": "node scripts/validate-components.mjs",
     "test:a11y": "playwright test tests/a11y.spec.js",
     "test:click-parity": "playwright test tests/click-parity.spec.js",
-    "test": "npm run validate && npm run test:a11y && npm run test:click-parity"
+    "test": "npm run validate && npm run test:a11y && npm run test:click-parity",
+    "deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
+    "@cloudflare/vite-plugin": "^1.42.4",
     "@playwright/test": "^1.61.1",
     "glob": "^13.0.6",
-    "vite": "^8.1.0"
+    "vite": "^8.1.0",
+    "wrangler": "^4.106.0"
   },
   "dependencies": {
     "marked": "^18.0.5"
